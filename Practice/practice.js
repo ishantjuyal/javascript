@@ -1,12 +1,7 @@
-let fruits = ["apple", "orange", "orange", "apple", "orange", "apple", "orange"]
+const container = document.getElementById("container");
 
-let appleShelf = document.getElementById("apple-shelf");
-let orangeShelf = document.getElementById("orange-shelf");
+container.innerHTML = "<button onclick='buy()'>Buy!</button>";
 
-for(let i = 0; i < fruits.length; i += 1){
-    if(fruits[i] === "apple"){
-        appleShelf.textContent += fruits[i] + " ";
-    } else{
-        orangeShelf.textContent += fruits[i] + " ";
-    }
+function buy() {
+    container.innerHTML += "<br><p>Thank you for buying!</p>"
 }
