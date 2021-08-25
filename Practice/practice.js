@@ -1,7 +1,9 @@
-const container = document.getElementById("container");
+const recipient = "James";
+const sender = "Ishant";
 
-container.innerHTML = "<button onclick='buy()'>Buy!</button>";
+const email = `Hey ${recipient}!
+How is it going?
+Cheers,
+${sender}`;
 
-function buy() {
-    container.innerHTML += "<br><p>Thank you for buying!</p>"
-}
+console.log(email);
