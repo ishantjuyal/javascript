@@ -1,0 +1,26 @@
+#container {
+    display: grid;
+    position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+	margin: auto;
+    background-color: silver;
+}
+
+#text {
+    margin: auto;
+    font-size: 30;
+}
+
+button {
+    align-items: center;
+    margin: auto;
+    
+    border-radius: 8px;
+    border: none;
+    padding: 15px;
+    font-weight: bold;
+}
