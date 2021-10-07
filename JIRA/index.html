@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="">
+        <title>JIRA</title>
+    </head>
+    <body>
+        <h2>Tasks</h2>
+        <button id="addTask">Add Task</button>
+
+        <div id="addTaskForm">
+            <br>
+            <form id="taskForm">
+                <table>
+                    <tr>
+                        <td>
+                            <label for="taskName">Task:</label>
+                        </td>
+                        <td>
+                            <input type="text" name="taskName" id="taskName">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Priority:</label>
+                        </td>
+                        <td>
+                            <label><input type="radio" name="taskPriority" id="taskPriority" value="l">
+                                Low
+                            </label>
+                            <label><input type="radio" name="taskPriority" id="taskPriority" value="m">
+                                Medium
+                            </label>
+                            <label><input type="radio" name="taskPriority" id="taskPriority" value="h">
+                                High
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Deadline:</label>
+                        </td>
+                        <td>
+                            <input type="date" name="taskDeadline" id="taskDeadline">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Status:</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="taskStatus" id="taskStatus" value="Y"><label>Done</label>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <button onclick="submitForm()">Submit</button>
+        </div>
+
+        <div id="tasksList">
+
+        </div>
+
+        <script src="app.js"></script>
+    </body>
+</html>
