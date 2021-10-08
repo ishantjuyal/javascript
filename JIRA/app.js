@@ -22,9 +22,41 @@ function submitForm() {
     var taskDeadline = document.getElementById("taskForm").elements.namedItem("taskDeadline").value;
     var taskStatus = document.getElementById("taskForm").elements.namedItem("taskStatus").checked ? 'Y' : 'N';
     
-    let newTask = new Task(taskName, taskPriority, taskDeadline, taskStatus);
-    console.log(newTask)
-    taskList.push(newTask);
-    formDiv.style.visibility = "hidden";
-    console.log(taskList);
+    if(taskName.length != 0){
+        let newTask = new Task(taskName, taskPriority, taskDeadline, taskStatus);
+        taskList.push(newTask);
+        formDiv.style.visibility = "hidden";
+        refreshTaskList(taskList);
+    }
+}
+
+function refreshTaskList(taskList) {
+    let taskListComp = document.getElementById("taskList");
+    let divValue = '';
+    if(taskList.length != 0) {
+        for(let i = 0; i < taskList.length; i++) {
+            divValue += `<div id="taskList">
+                ${taskList[i].name}
+                ${taskList[i].priority}
+                ${taskList[i].deadline}
+                ${taskList[i].status}
+                <button onclick="deleteElement('${taskList[i].name}')">Delete</button>
+            </div><br>`
+        }
+        taskListComp.innerHTML = divValue;
+    } else {
+        taskListComp.innerHTML = '';
+    }
+}
+
+function deleteElement(deleteName) {
+    let index = 0
+    for(let i = 0; i < taskList.length; i++) {
+        if(taskList[i].name === deleteName) {
+            index = i;
+            break;
+        }
+    }
+    taskList.splice(index, 1);
+    refreshTaskList(taskList);
 }
