@@ -1,4 +1,4 @@
-function Task(taskName, taskPriority, taskDeadline, taskStatus) {
+function Task(taskName, taskPriority = "low", taskDeadline = "2021-10-11", taskStatus) {
     this.name = taskName;
     this.priority = taskPriority;
     this.deadline = taskDeadline;
@@ -7,14 +7,15 @@ function Task(taskName, taskPriority, taskDeadline, taskStatus) {
 
 let taskList = [];
 
+document.getElementById("addTaskForm").style.display = "none";
 
-let addTaskButton = document.getElementById("addTask");
-let formDiv = document.getElementById("addTaskForm");
-formDiv.style.visibility = "hidden";
+function openForm() {
+    document.getElementById("addTaskForm").style.display = "block";
+}
 
-addTaskButton.addEventListener('click', function() {
-    formDiv.style.visibility = 'visible';
-})
+function closeForm() {
+    document.getElementById("addTaskForm").style.display = "none";
+}
 
 function submitForm() {
     var taskName = document.getElementById("taskForm").elements.namedItem("taskName").value;
@@ -22,24 +23,34 @@ function submitForm() {
     var taskDeadline = document.getElementById("taskForm").elements.namedItem("taskDeadline").value;
     var taskStatus = document.getElementById("taskForm").elements.namedItem("taskStatus").checked ? 'Y' : 'N';
     
+    if(taskDeadline === ""){
+        taskDeadline = "2021-10-11";
+    }
+
+    if(taskPriority === ""){
+        taskPriority = "Low";
+    }
+
     if(taskName.length != 0){
         let newTask = new Task(taskName, taskPriority, taskDeadline, taskStatus);
         taskList.push(newTask);
-        formDiv.style.visibility = "hidden";
+        closeForm();
         refreshTaskList(taskList);
     }
 }
 
 function refreshTaskList(taskList) {
-    let taskListComp = document.getElementById("taskList");
+    let taskListComp = document.getElementById("tasks");
     let divValue = '';
     if(taskList.length != 0) {
         for(let i = 0; i < taskList.length; i++) {
-            divValue += `<div id="taskList">
-                ${taskList[i].name}
-                ${taskList[i].priority}
-                ${taskList[i].deadline}
-                ${taskList[i].status}
+            divValue += `
+            <br>
+            <div id="taskList">    
+                ${taskList[i].name}<br>
+                ${taskList[i].priority}<br>
+                ${taskList[i].deadline}<br>
+                ${taskList[i].status}<br>
                 <button onclick="deleteElement('${taskList[i].name}')">Delete</button>
             </div><br>`
         }

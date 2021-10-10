@@ -1,15 +1,15 @@
 <html>
     <head>
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="style.css">
         <title>JIRA</title>
     </head>
     <body>
         <h2>Tasks</h2>
-        <button id="addTask">Add Task</button>
+        <button id="addTask" onclick="openForm()">Add Task</button>
 
         <div id="addTaskForm">
             <br>
-            <form id="taskForm">
+            <form action="/action_page.php" id="taskForm">
                 <table>
                     <tr>
                         <td>
@@ -25,13 +25,13 @@
                             <label>Priority:</label>
                         </td>
                         <td>
-                            <label><input type="radio" name="taskPriority" id="taskPriority" value="l">
+                            <label><input type="radio" name="taskPriority" id="taskPriority" value="Low">
                                 Low
                             </label>
-                            <label><input type="radio" name="taskPriority" id="taskPriority" value="m">
+                            <label><input type="radio" name="taskPriority" id="taskPriority" value="Medium">
                                 Medium
                             </label>
-                            <label><input type="radio" name="taskPriority" id="taskPriority" value="h">
+                            <label><input type="radio" name="taskPriority" id="taskPriority" value="High">
                                 High
                             </label>
                         </td>
@@ -55,9 +55,10 @@
                 </table>
             </form>
             <button onclick="submitForm()">Submit</button>
+            <button onclick="closeForm()">Close</button>
         </div>
 
-        <div id="taskList">
+        <div id="tasks">
             
         </div>
 
