@@ -37,7 +37,7 @@
     font-weight: bold;
     color: #f2f2f2;
     float: right;
-    margin-right: 50px;
+    margin-right: 100px;
     /* border: 5px solid red; */
 }
 
@@ -64,7 +64,3 @@
     }
 }
 
-.writing {
-    background-color: black;
-    height: 100%;
-}
