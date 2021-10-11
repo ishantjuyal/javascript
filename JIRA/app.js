@@ -21,7 +21,7 @@ function submitForm() {
     var taskName = document.getElementById("taskForm").elements.namedItem("taskName").value;
     var taskPriority = document.getElementById("taskForm").elements.namedItem("taskPriority").value;
     var taskDeadline = document.getElementById("taskForm").elements.namedItem("taskDeadline").value;
-    var taskStatus = document.getElementById("taskForm").elements.namedItem("taskStatus").checked ? 'Y' : 'N';
+    var taskStatus = document.getElementById("taskForm").elements.namedItem("taskStatus").checked ? 'Done' : 'Not Done';
     
     if(taskDeadline === ""){
         taskDeadline = "2021-10-11";
@@ -45,14 +45,36 @@ function refreshTaskList(taskList) {
     if(taskList.length != 0) {
         for(let i = 0; i < taskList.length; i++) {
             divValue += `
-            <br>
-            <div id="taskList">    
-                ${taskList[i].name}<br>
-                ${taskList[i].priority}<br>
-                ${taskList[i].deadline}<br>
-                ${taskList[i].status}<br>
+            <div id="taskList">
+                <table>
+                    <tr>
+                        <td>Name</td>
+                        <td>
+                        ${taskList[i].name}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Priority</td>
+                        <td>
+                        ${taskList[i].priority}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Deadline</td>
+                        <td>
+                        ${taskList[i].deadline}
+                        </td>
+                        </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>
+                        ${taskList[i].status}
+                        </td>
+                    </tr>
+                </table>
                 <button onclick="deleteElement('${taskList[i].name}')">Delete</button>
-            </div><br>`
+                <button onclick="changeElementStatus('${taskList[i].name}')">Change Status</button>
+            </div>`
         }
         taskListComp.innerHTML = divValue;
     } else {
@@ -69,5 +91,23 @@ function deleteElement(deleteName) {
         }
     }
     taskList.splice(index, 1);
+    refreshTaskList(taskList);
+}
+
+function changeElementStatus(changeName) {
+    let index = 0
+    for(let i = 0; i < taskList.length; i++) {
+        if(taskList[i].name === changeName) {
+            index = i;
+            break;
+        }
+    }
+
+    if(taskList[index].status === "Not Done") {
+        taskList[index].status = "Done";
+    } else {
+        taskList[index].status = "Not Done"
+    }
+
     refreshTaskList(taskList);
 }
