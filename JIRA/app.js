@@ -7,6 +7,13 @@ function Task(taskName, taskPriority = "low", taskDeadline = "2021-10-11", taskS
 
 let taskList = [];
 
+const tasksFromLocalStorage = JSON.parse(localStorage.getItem("tasks"));
+
+if(tasksFromLocalStorage){
+    taskList = tasksFromLocalStorage;
+    refreshTaskList(taskList);
+}
+
 document.getElementById("addTaskForm").style.display = "none";
 
 function openForm() {
@@ -34,6 +41,7 @@ function submitForm() {
     if(taskName.length != 0){
         let newTask = new Task(taskName, taskPriority, taskDeadline, taskStatus);
         taskList.push(newTask);
+        localStorage.setItem("tasks", JSON.stringify(taskList));
         closeForm();
         refreshTaskList(taskList);
     }
@@ -91,6 +99,7 @@ function deleteElement(deleteName) {
         }
     }
     taskList.splice(index, 1);
+    localStorage.setItem("tasks", JSON.stringify(taskList));
     refreshTaskList(taskList);
 }
 
@@ -108,6 +117,6 @@ function changeElementStatus(changeName) {
     } else {
         taskList[index].status = "Not Done"
     }
-
+    localStorage.setItem("tasks", JSON.stringify(taskList));
     refreshTaskList(taskList);
 }
