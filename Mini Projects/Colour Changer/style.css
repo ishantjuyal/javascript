@@ -1,26 +1,24 @@
 #container {
-    display: grid;
-    position: absolute;
-	top:0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-  	
+    font-size: 25;
+    font-weight: bold;
+    max-width: 400px;
 	margin: auto;
-    background-color: silver;
-}
-
-#text {
-    margin: auto;
-    font-size: 30;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 250px;
 }
 
 button {
-    align-items: center;
-    margin: auto;
-    
+    margin-top: 20px;
+    margin-left: 720px;
     border-radius: 8px;
     border: none;
-    padding: 15px;
-    font-weight: bold;
+    padding: 10px;
+    font-weight: bolder;
+    font-size: 16px;
+    border: 2px solid black;
+    background-color: transparent;
 }
