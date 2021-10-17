@@ -1,5 +1,17 @@
 let gameboardArray = [["", "", ""], ["", "", ""], ["", "", ""]];
 
+const player = (mark) => {
+    const returnMark = () => mark;
+    return {returnMark}
+}
+
+var myPlayer;
+function choosePlayer(mark) {
+    myPlayer = player(mark);
+    let playerDiv = document.getElementById("player");
+    playerDiv.style.display = "none";
+}
+
 function showGameboard(gameboardArray) {
     let gameBoardDiv = document.getElementById("gameboard");
     let gameText = `<table>`;
@@ -7,7 +19,7 @@ function showGameboard(gameboardArray) {
     for(let i = 0; i < 3; i ++) {
         let row = `<tr>`;
         for(let j = 0; j < 3; j++) {
-            row += `<td><button id="tic" onclick="gameController.mark(${i},${j})">${gameboardArray[i][j]}</button></td>`;
+            row += `<td><button id="tic" onclick="gameController.mark(${i},${j}, myPlayer.returnMark())">${gameboardArray[i][j]}</button></td>`;
         }
         row += `</tr>`;
         gameText += row;
@@ -15,20 +27,62 @@ function showGameboard(gameboardArray) {
     gameText += `</table>`
     gameBoardDiv.innerHTML = gameText;
 }
-
 showGameboard(gameboardArray);
 
-const gameController = (() => {
-    const mark = (i, j) => {
-        if(gameboardArray[i][j] === ""){
-            gameboardArray[i][j] = "X";
+function checkEmpty(gameboardArray) {
+    let value = 0
+    for(let i = 0; i < 3; i++) {
+        for(let j = 0; j < 3; j++) {
+            if(gameboardArray[i][j] == "") {
+                value = 1;
+            }
         }
-        checkWin(gameboardArray)
+    }
+
+    if(value == 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+const gameController = (() => {
+    const mark = (i, j, mark) => {
+        if(gameboardArray[i][j] === ""){
+            console.log(mark);
+            gameboardArray[i][j] = mark;
+        }
         showGameboard(gameboardArray);
+        checkWin(gameboardArray);
+        showGameboard(gameboardArray);
+        if(checkEmpty(gameboardArray) && mark == myPlayer.returnMark()) {
+            let alternateMark;
+            if(mark == "O") {
+                alternateMark = "X"
+            } else {
+                alternateMark = "O"
+            }
+            randomMark(alternateMark);
+        };
     };
     return {mark};
 })();
 
+
+function randomMark(mark) {
+    while(true) {
+        let i = Math.floor(Math.random()*3);
+        let j = Math.floor(Math.random()*3);
+    
+        if(gameboardArray[i][j] == "") {
+            gameController.mark(i,j, mark);
+            break;
+        }
+    }
+}
+
+
+// Check if anyone won the game!
 function checkHorizontal(gameboardArray){
     let score = 0;
     for(let i = 0; i < 3; i ++) {
@@ -39,8 +93,9 @@ function checkHorizontal(gameboardArray){
         }
     }
     if(score > 0) {
-        console.log("WON! The Game will restart now")
-        setTimeout(reloadScreen, 5000);
+        console.log("WON! The Game will restart now");
+        // alert("WON! The Game will restart now");
+        setTimeout(reloadScreen, 2000);
     }
     // return(score)
 }
@@ -55,8 +110,9 @@ function checkVertical(gameboardArray){
         }
     }
     if(score > 0) {
-        console.log("WON! The Game will restart now")
-        setTimeout(reloadScreen, 5000);
+        console.log("WON! The Game will restart now");
+        // alert("WON! The Game will restart now");
+        setTimeout(reloadScreen, 2000);
     }
     // return(score)
 }
@@ -76,7 +132,8 @@ function checkDiagonal(gameboardArray) {
     }
     if(score > 0) {
         console.log("WON! The Game will restart now")
-        setTimeout(reloadScreen, 5000);
+        // alert("WON! The Game will restart now");
+        setTimeout(reloadScreen, 2000);
     }
     // return(score);
 }
