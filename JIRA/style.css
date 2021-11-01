@@ -11,21 +11,34 @@
     text-align: left;
 }
 
+#addTaskForm {
+    margin-left: 20px;
+}
+
+
 #taskList {
     margin: 5px;
-    width: 200px;
-    height: 200px;
+    width: 60%;
     border: 2px solid black;
     float: left;
 }
 
-#taskList table {
-    margin: auto;
-    margin-top: 33px;
-    margin-bottom: 10px;
+#value {
+    float: left;
+    margin: 5px;
 }
 
-#taskList button {
+#taskButtons {
+    margin: 5px;
+    float: right;
+}
+
+#taskButtons button {
     font-weight: bold;
-    margin-left: 10px;
+    margin: 5px;
+}
+
+#valueDeadline {
+    float: left;
+    margin: 5px;
 }

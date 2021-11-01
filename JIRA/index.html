@@ -27,31 +27,19 @@
                             <label>Priority:</label>
                         </td>
                         <td>
-                            <label><input type="radio" name="taskPriority" id="taskPriority" value="Low">
-                                Low
-                            </label>
-                            <label><input type="radio" name="taskPriority" id="taskPriority" value="Medium">
-                                Medium
-                            </label>
-                            <label><input type="radio" name="taskPriority" id="taskPriority" value="High">
-                                High
-                            </label>
+                            <select name="taskPriority" id="taskPriority">
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label>Deadline:</label>
+                            <label>Due Date:</label>
                         </td>
                         <td>
                             <input type="date" name="taskDeadline" id="taskDeadline">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Status:</label>
-                        </td>
-                        <td>
-                            <input type="checkbox" name="taskStatus" id="taskStatus" value="Y"><label>Done</label>
                         </td>
                     </tr>
                 </table>

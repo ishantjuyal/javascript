@@ -28,7 +28,7 @@ function submitForm() {
     var taskName = document.getElementById("taskForm").elements.namedItem("taskName").value;
     var taskPriority = document.getElementById("taskForm").elements.namedItem("taskPriority").value;
     var taskDeadline = document.getElementById("taskForm").elements.namedItem("taskDeadline").value;
-    var taskStatus = document.getElementById("taskForm").elements.namedItem("taskStatus").checked ? 'Done' : 'Not Done';
+    var taskStatus = 'Not Done';
     
     if(taskDeadline === ""){
         taskDeadline = "2021-10-11";
@@ -50,39 +50,48 @@ function submitForm() {
 function refreshTaskList(taskList) {
     let taskListComp = document.getElementById("tasks");
     let divValue = '';
+    let colorVar = "green";
     if(taskList.length != 0) {
         for(let i = 0; i < taskList.length; i++) {
-            divValue += `
-            <div id="taskList">
-                <table>
-                    <tr>
-                        <td>Name</td>
-                        <td>
+            if(taskList[i].priority == "Medium"){
+                colorVar = "gold";
+            }
+            if(taskList[i].priority == "High"){
+                colorVar = "red";
+            }
+            if(taskList[i].priority == "Low"){
+                colorVar = "green"
+            }
+            if(taskList[i].status == "Not Done"){
+                divValue += `
+                <div id="taskList">
+                    <div id="value" style="color:${colorVar};">
                         ${taskList[i].name}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Priority</td>
-                        <td>
-                        ${taskList[i].priority}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Deadline</td>
-                        <td>
-                        ${taskList[i].deadline}
-                        </td>
-                        </tr>
-                    <tr>
-                        <td>Status</td>
-                        <td>
-                        ${taskList[i].status}
-                        </td>
-                    </tr>
-                </table>
-                <button onclick="deleteElement('${taskList[i].name}')">Delete</button>
-                <button onclick="changeElementStatus('${taskList[i].name}')">Change Status</button>
-            </div>`
+                    </div>
+                    <div id = "taskButtons">
+                        <div id="valueDeadline">
+                            ${taskList[i].deadline}
+                        </div>
+                        <button onclick="deleteElement('${taskList[i].name}')">Delete</button>
+                        <button onclick="changeElementStatus('${taskList[i].name}')">Change Status</button>
+                    </div>
+                </div>`
+            } else {
+                divValue += `
+                <div id="taskList">
+                    <div id="value" style=${colorVar}>
+                        <strike>${taskList[i].name}</strike>
+                    </div>
+
+                    <div id = "taskButtons">
+                        <div id="valueDeadline">
+                            ${taskList[i].deadline}
+                        </div>
+                        <button onclick="deleteElement('${taskList[i].name}')">Delete</button>
+                        <button onclick="changeElementStatus('${taskList[i].name}')">Change Status</button>
+                    </div>
+                </div>`
+            }
         }
         taskListComp.innerHTML = divValue;
     } else {
