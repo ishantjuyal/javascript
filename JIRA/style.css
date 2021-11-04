@@ -15,22 +15,33 @@
     margin-left: 20px;
 }
 
+#centring {
+    display: flex;
+    justify-content: center;
+}
 
 #taskList {
     margin: 5px;
-    width: 60%;
+    width: 50%;
     border: 2px solid black;
     float: left;
 }
 
 #value {
     float: left;
+    font-weight: bold;
+    font-size: 20px;
     margin: 5px;
+    margin-top: 10px;
+    /* border: 2px solid red; */
+    text-align: center;
+    width: 60%;
 }
 
 #taskButtons {
     margin: 5px;
     float: right;
+    /* border: 2px solid yellow; */
 }
 
 #taskButtons button {

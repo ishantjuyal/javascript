@@ -54,7 +54,7 @@ function refreshTaskList(taskList) {
     if(taskList.length != 0) {
         for(let i = 0; i < taskList.length; i++) {
             if(taskList[i].priority == "Medium"){
-                colorVar = "gold";
+                colorVar = "blue";
             }
             if(taskList[i].priority == "High"){
                 colorVar = "red";
@@ -64,6 +64,7 @@ function refreshTaskList(taskList) {
             }
             if(taskList[i].status == "Not Done"){
                 divValue += `
+                <div id="centring">
                 <div id="taskList">
                     <div id="value" style="color:${colorVar};">
                         ${taskList[i].name}
@@ -75,9 +76,11 @@ function refreshTaskList(taskList) {
                         <button onclick="deleteElement('${taskList[i].name}')">Delete</button>
                         <button onclick="changeElementStatus('${taskList[i].name}')">Change Status</button>
                     </div>
+                </div>
                 </div>`
             } else {
                 divValue += `
+                <div id="centring">
                 <div id="taskList">
                     <div id="value" style=${colorVar}>
                         <strike>${taskList[i].name}</strike>
@@ -90,6 +93,7 @@ function refreshTaskList(taskList) {
                         <button onclick="deleteElement('${taskList[i].name}')">Delete</button>
                         <button onclick="changeElementStatus('${taskList[i].name}')">Change Status</button>
                     </div>
+                </div>
                 </div>`
             }
         }

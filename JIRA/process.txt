@@ -1,5 +1,0 @@
-What are we building?
-
-Kinda To-Do app where you can add, alter or remove tasks.
-
-Each task includes - Name, Priority, Deadline, Done/Not Done.
